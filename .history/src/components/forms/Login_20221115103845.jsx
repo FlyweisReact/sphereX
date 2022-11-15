@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { VscEyeClosed, VscEye } from "react-icons/vsc";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlinePhone } from "react-icons/ai";
 import { BiLogInCircle } from "react-icons/bi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const Login = () => {
   const [inputpass, setInputpass] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const login = async (e) => {
@@ -53,12 +53,14 @@ const Login = () => {
             {/* Email */}
             <div className="shadow-2xl sm:w-96 border border-[rgb(241,146,46)] space-x-4 flex items-center w-64  p-2 rounded-md">
               <input
-                type="email"
+                type="tel"
+                placeholder="1234567890"
+                name="email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
                 className="outline-none px-0.5  bg-transparent tracking-wider w-full"
               />
-              <AiOutlineMail className="text-xl " />
+              <AiOutlinePhone className="text-xl " />
             </div>
             {/* Password */}
             <div className="shadow-2xl sm:w-96 border border-[rgb(241,146,46)] space-x-4 flex items-center w-64  p-2 rounded-md">

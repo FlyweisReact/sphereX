@@ -1,5 +1,3 @@
-/** @format */
-
 import { Routes, Route, Link } from "react-router-dom";
 import Login from "./components/forms/Login";
 import Dashboard from "./components/pages/Dashboard";
@@ -35,11 +33,24 @@ import AddCat from "./components/pages/Cat/AddCat";
 import AddSubCat from "./components/pages/Cat/AddSubCat";
 
 function App() {
+  const colorChanger = () => {
+    let target = document.getElementById("normal");
+    target.style.display = "none";
+  };
+
   return (
     <>
       <ToastContainer />
+      <Link
+        to="/login"
+        style={{ position: "absolute" }}
+        onClick={colorChanger}
+        id="normal"
+      >
+        Login
+      </Link>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
         {/*----------------------  Orders  ---------------------------- */}
@@ -93,6 +104,7 @@ function App() {
         <Route path="/addCat" element={<AddCat />} />
         <Route path="/addSubCat/:id" element={<AddSubCat />} />
         {/*---------------------------------------------------------------- */}
+
       </Routes>
     </>
   );

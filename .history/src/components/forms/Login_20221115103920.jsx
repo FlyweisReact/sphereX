@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { VscEyeClosed, VscEye } from "react-icons/vsc";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlinePhone } from "react-icons/ai";
 import { BiLogInCircle } from "react-icons/bi";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
