@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import HOC from "../../layout/HOC";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -54,12 +54,6 @@ const Cat = () => {
               <Form.Label>Image</Form.Label>
               <Form.Control type="file" />
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" placeholder="New" required />
-            </Form.Group>
-
             <Button variant="outline-success" type="submit">
               Submit
             </Button>
@@ -79,10 +73,10 @@ const Cat = () => {
       <section>
         <div className="pb-4 sticky top-0  w-full flex justify-between items-center bg-white">
           <span className="tracking-widest text-slate-900 font-semibold uppercase ">
-            All Banner
+            All Offers
           </span>
           <Button variant="outline-success" onClick={() => setModalShow(true)}>
-            Add-Banner
+            Add-Offer
           </Button>
         </div>
       </section>
@@ -102,22 +96,18 @@ const Cat = () => {
                       alt=""
                       style={{ width: "100%", height: "200px" }}
                     />
-                    <div className="card-title" style={{ textAlign: "center" }}>
-                      {i.name}
-                    </div>
+
                     <div
                       style={{
-                        display: "flex",
-                        justifyContent: "space-between",
+                        marginTop: "2%",
                       }}
                     >
                       <Button
-                        variant="outline-info "
-                        onClick={() => setModalShow(true)}
+                        variant="outline-danger"
+                        style={{ width: "100%" }}
                       >
-                        Edit
+                        Delete
                       </Button>
-                      <Button variant="outline-danger">Delete</Button>
                     </div>
                   </div>
                 </div>

@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { VscEyeClosed, VscEye } from "react-icons/vsc";
@@ -21,10 +23,19 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      const {data} = await axios.post(
+        "https://mysterious-journey-56967.herokuapp.com/api/v1/login"
+        ,{
+          email , password
+        }
+      );
+      localStorage.setItem('token' ,data.acessToken)
+      console.log(localStorage.getItem('token'))
       navigate("/dashboard");
       toast.success("Welcome");
     } catch (err) {
       setLoading(false);
+      toast.error('Check your credentials')
     }
   };
 

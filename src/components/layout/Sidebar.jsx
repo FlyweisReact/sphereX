@@ -3,16 +3,18 @@
 import React from "react";
 import { RiCloseLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { IoMdChatboxes } from "react-icons/io";
 import { BiLogOutCircle } from "react-icons/bi";
 import { AiOutlineUser } from "react-icons/ai";
-import { BsFillImageFill, BsCartCheck } from "react-icons/bs";
+import { BsFillImageFill } from "react-icons/bs";
 import { HiCurrencyRupee } from "react-icons/hi";
 import {
   MdDashboardCustomize,
   MdOutlineMiscellaneousServices,
+  MdPrivacyTip
 } from "react-icons/md";
+
 import { toast } from "react-toastify";
+import {FiHelpCircle} from 'react-icons/fi'
 
 const Sidebar = ({ hamb, setHamb }) => {
   const navigate = useNavigate();
@@ -46,23 +48,34 @@ const Sidebar = ({ hamb, setHamb }) => {
     {
       icon: <BsFillImageFill className="text-xl mr-3" />,
       link: "/cat",
-      name: "Banner",
+      name: "Offer",
+    },
+    {
+      icon: <BsFillImageFill className="text-xl mr-3" />,
+      link: "/event",
+      name: "Event",
     },
     {
       icon: <BsFillImageFill className="text-xl mr-3" />,
       link: "/inventory",
       name: "Lands",
     },
-    // {
-    //   icon: <BsCartCheck className="text-xl mr-3" />,
-    //   link: "/discount",
-    //   name: "Carts",
-    // },
-    // {
-    //   icon:,
-    //   link: "https://salesiq.zoho.in/flyweistechnology/liveview",
-    //   name: "",
-    // },
+    {
+      icon: <BsFillImageFill className="text-xl mr-3" />,
+      link: "/terms",
+      name: "Terms&Condition",
+    },
+    {
+      icon: <MdPrivacyTip className="text-xl mr-3" />,
+      link: "/privacy",
+      name: "Privacy Policy",
+    },
+    {
+      icon: <FiHelpCircle className="text-xl mr-3" />,
+      link: "/help",
+      name: "Help&Support",
+    },
+
   ];
 
   const logOut = async (e) => {
