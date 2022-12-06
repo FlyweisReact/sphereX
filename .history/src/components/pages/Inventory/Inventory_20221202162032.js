@@ -268,7 +268,7 @@ const Inventory = () => {
                 <img
                   src={
                     i.image
-                      ? `https://mysterious-journey-56967.herokuapp.com/${i.image}`
+                      ? i.image
                       : "https://akm-img-a-in.tosshub.com/businesstoday/images/story/202206/rice-fields-g83d1e5e51_1280-sixteen_nine.jpg?size=948:533"
                   }
                   // src=""

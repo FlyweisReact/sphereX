@@ -85,10 +85,10 @@ const Cat = () => {
         className="main-card--container"
         style={{ color: "black", marginBottom: "10%" }}
       >
-        {Ban.map((i , index) => {
+        {Ban.map((i) => {
           return (
             <>
-              <div className="card-container" key={index}>
+              <div className="card-container">
                 <div className="card">
                   <div className="card-body">
                     <img

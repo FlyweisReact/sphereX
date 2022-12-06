@@ -88,7 +88,7 @@ const Cat = () => {
         {Ban.map((i , index) => {
           return (
             <>
-              <div className="card-container" key={index}>
+              <div className="card-container">
                 <div className="card">
                   <div className="card-body">
                     <img
