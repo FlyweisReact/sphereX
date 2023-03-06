@@ -1,27 +1,20 @@
 /** @format */
-
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Container,
-  Table,
-  Modal,
-  Form,
-  FloatingLabel,
-} from "react-bootstrap";
+import { Button, Container, Table, Modal, Form } from "react-bootstrap";
 import HOC from "../../layout/HOC";
 import { AiFillEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const Privacy = () => {
+const Help = () => {
   const [modalShow, setModalShow] = React.useState(false);
+
   const [data, setData] = useState([]);
 
   const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/policy"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/contact"
       );
       setData(data);
     } catch (err) {
@@ -34,19 +27,23 @@ const Privacy = () => {
   }, []);
 
   function MyVerticallyCenteredModal(props) {
-    const [privacy, setP] = useState("");
+    const [address, setA] = useState("");
+    const [email, setE] = useState("");
+    const [phone, setP] = useState("");
 
     const putHandler = async (e) => {
       e.preventDefault();
       try {
         const data = await axios.put(
-          "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/policy/63aaa9ca8b8072204c0ac6bb",
+          "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/contact/63aaa8da8b8072204c0ac6b7",
           {
-            privacy,
+            address,
+            email,
+            phone,
           }
         );
         console.log(data);
-        toast.success("Privacy Updated");
+        toast.success("Help&Support Updated");
         fetchHandler();
         setModalShow(false);
       } catch (err) {
@@ -63,7 +60,7 @@ const Privacy = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Edit Privacy Policy
+            Edit Help&Support
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -74,16 +71,29 @@ const Privacy = () => {
             }}
             onSubmit={putHandler}
           >
-            <FloatingLabel
-              controlId="floatingTextarea"
-              label="Privacy policy"
-              className="mb-3"
-            >
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Address</Form.Label>
               <Form.Control
-                as="textarea"
+                type="text"
+                onChange={(e) => setA(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                onChange={(e) => setE(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                type="Number"
                 onChange={(e) => setP(e.target.value)}
               />
-            </FloatingLabel>
+            </Form.Group>
 
             <Button variant="outline-success" type="submit">
               Submit
@@ -104,7 +114,7 @@ const Privacy = () => {
       <section>
         <div className="pb-4 sticky top-0  w-full flex justify-between items-center bg-white">
           <span className="tracking-widest text-slate-900 font-semibold uppercase ">
-            All Privacy Policy
+            All Help&Support
           </span>
         </div>
       </section>
@@ -113,14 +123,19 @@ const Privacy = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Privacy Policy</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Contact</th>
               <th> Action </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{data?.privacy?.privacy}</td>
-              <td style={{ display: "flex", gap: "10px" }}>
+              <td>{data?.contact?.address}</td>
+              <td>{data?.contact?.email}</td>
+              <td>{data?.contact?.phone}</td>
+
+              <td>
                 <AiFillEdit
                   color="blue"
                   cursor={"pointer"}
@@ -137,4 +152,4 @@ const Privacy = () => {
   );
 };
 
-export default HOC(Privacy);
+export default HOC(Help);

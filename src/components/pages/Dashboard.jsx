@@ -16,7 +16,7 @@ const Dashboard = () => {
     },
     {
       progress: "bg-green-400",
-      title: "All Labours",
+      title: "All Patners",
       number: "100",
       icon: (
         <FaUserFriends className="text-2xl text-[rgb(241,147,48)]" />

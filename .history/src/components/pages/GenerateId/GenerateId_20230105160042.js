@@ -153,7 +153,7 @@ const GenerateId = () => {
     e.preventDefault();
     try {
       const data = await axios.post(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/addlabour",
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/addlabour",
         {
           partnerId,
           Name,
@@ -185,7 +185,7 @@ const GenerateId = () => {
   const fetchLabours = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetalllabour"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetalllabour"
       );
       setData(data);
     } catch (Err) {

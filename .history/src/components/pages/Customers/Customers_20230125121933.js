@@ -15,7 +15,7 @@ const Customers = () => {
   const [search, setNewSearch] = React.useState("");
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSearchChange = (e) => {
     setNewSearch(e.target.value);
@@ -31,7 +31,7 @@ const Customers = () => {
   const fetchData = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetallcustomer"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetallcustomer"
       );
       setData(data);
     } catch (err) {
@@ -46,11 +46,12 @@ const Customers = () => {
   function MyVerticallyCenteredModal(props) {
     const [customerId, setCustomerId] = useState("");
 
+
     const AddCustomerId = async (e) => {
       e.preventDefault();
       try {
         const data = await axios.put(
-          `https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/ID/${id}`,
+          `http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/ID/${id}`,
           { customerId }
         );
         console.log(data);
@@ -99,7 +100,7 @@ const Customers = () => {
   const deleteHandler = async (id) => {
     try {
       const data = await axios.delete(
-        `https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/cuestomer/${id}`
+        `http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/cuestomer/${id}`
       );
       console.log(data);
       toast.success("Customer Deleted");
@@ -137,7 +138,7 @@ const Customers = () => {
             padding: "10px",
             borderRadius: "0px",
             float: "right",
-            marginRight: "10px",
+            marginRight : '10px',
             marginBottom: "20px",
             color: "black",
           }}
@@ -191,15 +192,7 @@ const Customers = () => {
                 <td> {i.livelocation} </td>
                 <td> {i.shopname} </td>
                 <td> {i.gstnumber} </td>
-                <td>
-                  {" "}
-                  <Button
-                    style={{ borderRadius: "0px" }}
-                    onClick={() => navigate(`/trans/${i._id}`)}
-                  >
-                    View
-                  </Button>{" "}
-                </td>
+                <td> <Button style={{borderRadius : '0px'}} onClick={() => navigate(`/trans/${i._id}`)} >View</Button>  </td>
                 <td>
                   <div style={{ display: "flex", gap: "10px" }}>
                     <AiFillDelete

@@ -15,7 +15,7 @@ const Cat = () => {
   const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/getBanner"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/getBanner"
       );
       setData(data);
     } catch (err) {
@@ -55,7 +55,7 @@ const Cat = () => {
       e.preventDefault();
       try {
         const data = await axios.post(
-          "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/addBanner",
+          "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/addBanner",
           {
             link: url,
             desc,
@@ -115,7 +115,7 @@ const Cat = () => {
   const deleteHandler = async (id) => {
     try {
       const data = await axios.delete(
-        `https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/deleteBanner/${id}`
+        `http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/deleteBanner/${id}`
       );
       console.log(data);
       toast.success("Banner deleted successfully");
@@ -184,7 +184,7 @@ const Cat = () => {
       <section>
         <div className="pb-4 sticky top-0  w-full flex justify-between items-center bg-white">
           <span className="tracking-widest text-slate-900 font-semibold uppercase ">
-            Partner Banners
+          Partner Banners
           </span>
           <Button variant="outline-success" onClick={() => setModalShow(true)}>
             Add Partner Banner

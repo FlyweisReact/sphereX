@@ -21,7 +21,7 @@ const Privacy = () => {
   const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/policy"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/policy"
       );
       setData(data);
     } catch (err) {
@@ -34,25 +34,24 @@ const Privacy = () => {
   }, []);
 
   function MyVerticallyCenteredModal(props) {
-    const [privacy, setP] = useState("");
 
-    const putHandler = async (e) => {
-      e.preventDefault();
-      try {
-        const data = await axios.put(
-          "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/policy/63aaa9ca8b8072204c0ac6bb",
-          {
-            privacy,
-          }
-        );
-        console.log(data);
-        toast.success("Privacy Updated");
-        fetchHandler();
-        setModalShow(false);
-      } catch (err) {
-        console.log(err);
+    const [ privacy , setP] = useState('')
+
+    const putHandler = async (e) =>{
+      e.preventDefault()
+      try{
+         const data = await axios.put('http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/policy/63aaa9ca8b8072204c0ac6bb' ,{
+          privacy
+         })
+         console.log(data)
+         toast.success('Privacy Updated')
+         fetchHandler()
+         setModalShow(false)
+      }catch(err){
+        console.log(err)
       }
-    };
+    }
+
 
     return (
       <Modal
@@ -72,20 +71,20 @@ const Privacy = () => {
               color: "black",
               margin: "auto",
             }}
-            onSubmit={putHandler}
+            onSubmit ={putHandler}
           >
             <FloatingLabel
               controlId="floatingTextarea"
               label="Privacy policy"
               className="mb-3"
             >
-              <Form.Control
-                as="textarea"
-                onChange={(e) => setP(e.target.value)}
-              />
+              <Form.Control as="textarea"  onChange={(e) => setP(e.target.value)}/>
             </FloatingLabel>
 
-            <Button variant="outline-success" type="submit">
+            <Button
+              variant="outline-success"
+              type="submit"
+            >
               Submit
             </Button>
           </Form>
@@ -119,7 +118,9 @@ const Privacy = () => {
           </thead>
           <tbody>
             <tr>
-              <td>{data?.privacy?.privacy}</td>
+              <td>
+               {data?.privacy?.privacy}
+              </td>
               <td style={{ display: "flex", gap: "10px" }}>
                 <AiFillEdit
                   color="blue"

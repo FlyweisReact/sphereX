@@ -5,16 +5,17 @@ import React, { useEffect, useState } from "react";
 import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import HOC from "../../layout/HOC";
-const NotifyLabour = () => {
-  const [data, setData] = useState([]);
-  const [labourId, setId] = useState("");
-  const [desc, setDesc] = useState("");
-  const [location, setL] = useState("");
 
-  const fetchLabour = async () => {
+const NotifyCustomer = () => {
+  const [data, setData] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [desc, setDesc] = useState("");
+  const [NoLabour, setNo] = useState("");
+
+  const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetalllabour"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetallcustomer"
       );
       setData(data);
     } catch (err) {
@@ -23,22 +24,22 @@ const NotifyLabour = () => {
   };
 
   useEffect(() => {
-    fetchLabour();
+    fetchHandler();
   }, []);
 
   const postHandler = async (e) => {
     e.preventDefault();
     try {
       const data = await axios.post(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/labourtask",
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/notify/",
         {
-          labourId,
+          userId,
           desc,
-          location,
+          NoLabour,
         }
       );
       console.log(data);
-      toast.success("Notification Sended");
+      toast.success("Notification Send Successfully");
     } catch (err) {
       console.log(err);
     }
@@ -49,29 +50,33 @@ const NotifyLabour = () => {
       <section>
         <div className="pb-4 sticky top-0  w-full flex justify-between items-center bg-white">
           <span className="tracking-widest text-slate-900 font-semibold uppercase ">
-            Assign Task to Partner
+            Push Notification 
           </span>
         </div>
       </section>
 
       <Container className="formD">
-        <p>Assign task to Partner</p>
         <Form onSubmit={postHandler}>
-          <Form.Group className="mb-3">
-            <Form.Label>Select Active Partner</Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => setId(e.target.value)}
-            >
-              <option>--Select--</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </Form.Select>
-          </Form.Group>
+
+        <Form.Group className="mb-3">
+        <Form.Label>Select Customer or Partner</Form.Label>
+        <Form.Select
+            aria-label="Default select example"
+            onChange={(e) => setUserId(e.target.value)}
+          >
+            <option>--Select--</option>
+            {data?.customer?.map((i, index) => (
+              <option key={index} value={i._id}>
+                {" "}
+                {i.customerId}{" "}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+      
           <FloatingLabel
             controlId="floatingTextarea"
-            label="Describe Work"
+            label="Description"
             className="mb-3"
             onChange={(e) => setDesc(e.target.value)}
           >
@@ -79,7 +84,7 @@ const NotifyLabour = () => {
           </FloatingLabel>
 
           <Button variant="outline-success" type="submit">
-            Assign task
+            Submit
           </Button>
         </Form>
       </Container>
@@ -87,4 +92,4 @@ const NotifyLabour = () => {
   );
 };
 
-export default HOC(NotifyLabour);
+export default HOC(NotifyCustomer);

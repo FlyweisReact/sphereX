@@ -10,14 +10,14 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Labour = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [data, setData] = useState([]);
 
   //fetchData
   const fetchData = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetalllabour"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetalllabour"
       );
       setData(data);
     } catch (err) {
@@ -41,18 +41,17 @@ const Labour = () => {
         person?.LId?.toLowerCase().includes(search.toLowerCase())
       );
 
-  const deleteHandler = async (id) => {
-    try {
-      const data = await axios.delete(
-        `https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/labour/${id}`
-      );
-      console.log(data);
-      toast.success("Lobour Deleted");
-      fetchData();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
+      const deleteHandler = async (id) => {
+        try{
+          const data = await axios.delete(`http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/labour/${id}`)
+          console.log(data)
+          toast.success('Lobour Deleted')
+          fetchData()
+        }catch(err){
+          console.log(err)
+        }
+      }
 
   return (
     <>
@@ -72,7 +71,7 @@ const Labour = () => {
           width: "300px",
           padding: "10px",
           borderRadius: "0px",
-          marginRight: "10px",
+          marginRight : '10px',
           float: "right",
           marginBottom: "20px",
           color: "black",
@@ -111,15 +110,7 @@ const Labour = () => {
               <td> {i.mobilenumber} </td>
               <td> {i.addresstype} </td>
               <td> {i.typesofwork} </td>
-              <td>
-                {" "}
-                <Button
-                  style={{ borderRadius: "0px" }}
-                  onClick={() => navigate(`/lab/${i._id}`)}
-                >
-                  View
-                </Button>{" "}
-              </td>
+              <td> <Button style={{borderRadius : '0px'}} onClick={() => navigate(`/lab/${i._id}`)} >View</Button>  </td>
               <td>
                 <div style={{ display: "flex", gap: "10px" }}>
                   <AiFillDelete

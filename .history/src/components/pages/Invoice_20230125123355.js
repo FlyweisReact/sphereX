@@ -14,7 +14,7 @@ const Invoice = () => {
   const fetchHandler = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/getinvoice"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/getinvoice"
       );
       setData(data);
     } catch (err) {
@@ -25,7 +25,7 @@ const Invoice = () => {
   const customerHandler = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetallcustomer"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetallcustomer"
       );
       setCustomer(data);
     } catch (err) {
@@ -50,7 +50,7 @@ const Invoice = () => {
       e.preventDefault();
       try {
         const data = await axios.post(
-          "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/addInvoice",
+          "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/addInvoice",
           {
             cuestomerId,
             InNumber,

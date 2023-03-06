@@ -17,6 +17,10 @@ import NotifyCustomer from "./components/pages/Notifications/NotifyCustomer";
 import Payment from "./components/pages/Payment/Payment";
 import AllTask from "./components/pages/AllTask";
 import Invoice from "./components/pages/Invoice";
+import Active from "./components/pages/Active";
+import CustomerTransaction from "./components/CustomerTransaction";
+import LabTrans from "./components/pages/LabTrans";
+import ViewLocation from "./components/pages/Labours/ViewLocation";
 
 function App() {
   return (
@@ -27,7 +31,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/customer" element={<Customers />} />
         <Route path="/cat" element={<Cat />} />
-\        <Route path="/terms" element={<Terms />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/help" element={<Help />} />
         <Route path="/allTask" element={<AllTask />} />
@@ -37,6 +41,10 @@ function App() {
         <Route path="/invoice" element={<Invoice />} />
         <Route path='/Notice/Customer' element={<NotifyCustomer />} />
         <Route path="/pay" element={<Payment />} />
+        <Route path="/activeLabour" element={<Active />} />
+        <Route path="/trans/:id" element={<CustomerTransaction />} />
+        <Route path="/lab/:id" element={<LabTrans />} />
+        <Route path="/location/:id" element={<ViewLocation />} />
       </Routes>
     </>
   );

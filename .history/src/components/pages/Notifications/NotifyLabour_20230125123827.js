@@ -6,15 +6,16 @@ import { Container, Form, FloatingLabel, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import HOC from "../../layout/HOC";
 const NotifyLabour = () => {
+  
   const [data, setData] = useState([]);
-  const [labourId, setId] = useState("");
-  const [desc, setDesc] = useState("");
-  const [location, setL] = useState("");
+  const [ labourId , setId  ] = useState('') 
+  const [desc , setDesc ] = useState('')
+  const [location , setL] = useState('')
 
   const fetchLabour = async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetalllabour"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetalllabour"
       );
       setData(data);
     } catch (err) {
@@ -22,27 +23,24 @@ const NotifyLabour = () => {
     }
   };
 
-  useEffect(() => {
-    fetchLabour();
-  }, []);
+  useEffect(() => { 
+    fetchLabour()
+  },[])
 
   const postHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const data = await axios.post(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/labourtask",
-        {
-          labourId,
-          desc,
-          location,
-        }
-      );
-      console.log(data);
-      toast.success("Notification Sended");
-    } catch (err) {
-      console.log(err);
+    e.preventDefault()
+    try{
+      const data = await axios.post('http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/labourtask' , {
+        labourId , desc , location
+      })
+      console.log(data)
+      toast.success('Notification Sended')
+    }catch(err){
+      console.log(err)
     }
-  };
+  }
+
+
 
   return (
     <>
@@ -57,18 +55,15 @@ const NotifyLabour = () => {
       <Container className="formD">
         <p>Assign task to Partner</p>
         <Form onSubmit={postHandler}>
-          <Form.Group className="mb-3">
-            <Form.Label>Select Active Partner</Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => setId(e.target.value)}
-            >
-              <option>--Select--</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </Form.Select>
-          </Form.Group>
+         <Form.Group className="mb-3">
+         <Form.Label>Select Active Partner</Form.Label>
+         <Form.Select aria-label="Default select example" onChange={(e) => setId(e.target.value)}>
+            <option>--Select--</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          </Form.Select>
+         </Form.Group>
           <FloatingLabel
             controlId="floatingTextarea"
             label="Describe Work"
@@ -77,10 +72,8 @@ const NotifyLabour = () => {
           >
             <Form.Control as="textarea" placeholder="Leave a comment here" />
           </FloatingLabel>
-
-          <Button variant="outline-success" type="submit">
-            Assign task
-          </Button>
+        
+          <Button variant="outline-success" type='submit'>Assign task</Button>
         </Form>
       </Container>
     </>

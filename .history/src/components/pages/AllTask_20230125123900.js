@@ -17,10 +17,10 @@ const AllTask = () => {
   const fetchData = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admingetallwork"
+        "http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admingetallwork"
       );
       setData(data);
-      console.log(data);
+      console.log(data)
     } catch (err) {
       console.log(err);
     }
@@ -37,15 +37,15 @@ const AllTask = () => {
       e.preventDefault();
       try {
         const data = await axios.put(
-          `https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/admin/workstatus/${id}`,
+          `http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/admin/workstatus/${id}`,
           {
             workstatus,
           }
         );
         console.log(data);
         toast.success("Status Changed");
-        fetchData();
-        setModalShow(false);
+        fetchData()
+        setModalShow(false)
       } catch (err) {
         console.log(err);
       }

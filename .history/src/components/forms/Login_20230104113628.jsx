@@ -15,24 +15,21 @@ const Login = () => {
   const [inputpass, setInputpass] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const[email ,setEmail] = useState('')
+  const[password ,setPassword] = useState('')
 
   const login = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const data = await axios.post(
-        "https://3o4qnc8du3.execute-api.ap-south-1.amazonaws.com/dev/adminsignin",
-        { email, password }
-      );
-      console.log(data);
+      const data = await axios.post('http://ec2-15-206-210-177.ap-south-1.compute.amazonaws.com:4001/adminsignin' , {email , password})
+      console.log(data)
       navigate("/dashboard");
       toast.success("Welcome");
     } catch (err) {
       setLoading(false);
-      console.log(err);
-      toast.error("Check your credentials");
+      console.log(err)
+      toast.error('Check your credentials')
     }
   };
 
@@ -52,7 +49,7 @@ const Login = () => {
               <input
                 type="email"
                 required
-                placeholder="email"
+                placeholder='email'
                 onChange={(e) => setEmail(e.target.value)}
                 className="outline-none px-0.5  bg-transparent tracking-wider w-full"
               />
