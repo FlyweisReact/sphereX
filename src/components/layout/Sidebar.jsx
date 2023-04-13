@@ -38,11 +38,11 @@ const Sidebar = ({ hamb, setHamb }) => {
       link: "/activeLabour",
       name: "Active Partner's",
     }, 
-    // {
-    //   icon: <AiOutlineUser className="text-xl mr-3" />,
-    //   link: "/invoice",
-    //   name: "Invoice",
-    // }, 
+    {
+      icon: <AiOutlineUser className="text-xl mr-3" />,
+      link: "/invoice",
+      name: "Invoice",
+    }, 
     {
       icon: <AiOutlineUser className="text-xl mr-3" />,
       link: "/generateId",
