@@ -31,10 +31,10 @@ const Customers = () => {
   const fetchData = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        "https://haroon-sphere-labour-bakend.vercel.app/admingetallcustomer"
+        "https://n6chil41tk.execute-api.ap-south-1.amazonaws.com/dev/admingetallcustomer"
       );
       setData(data);
-      console.log(data);
+      console.log(data)
     } catch (err) {
       console.log(err);
     }
@@ -51,7 +51,7 @@ const Customers = () => {
       e.preventDefault();
       try {
         const data = await axios.put(
-          `https://haroon-sphere-labour-bakend.vercel.app/admin/ID/${id}`,
+          `https://n6chil41tk.execute-api.ap-south-1.amazonaws.com/dev/admin/ID/${id}`,
           { customerId }
         );
         console.log(data);
@@ -100,7 +100,7 @@ const Customers = () => {
   const deleteHandler = async (id) => {
     try {
       const data = await axios.delete(
-        `https://haroon-sphere-labour-bakend.vercel.app/admin/cuestomer/${id}`
+        `https://n6chil41tk.execute-api.ap-south-1.amazonaws.com/dev/admin/cuestomer/${id}`
       );
       console.log(data);
       toast.success("Customer Deleted");
